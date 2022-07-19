@@ -4,6 +4,7 @@ import TodoItem from './TodoItem';
 import axios from 'axios';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { MdDeleteSweep } from 'react-icons/md';
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -16,7 +17,6 @@ function TodoList() {
 
   const [todos,setTodos] = useState([]);
 
-
   const nowTime = moment().format('YYYY-MM-DD');
 
   useEffect( () => {
@@ -27,7 +27,33 @@ function TodoList() {
       })
   },[])
 
-  console.log(todos);
+  const clicks = (todo) => {
+    axios.post('http://localhost:8088/todo/check',{
+      id : todo.id,
+      date : nowTime,
+      work : todo.work,
+      finish : !todo.finish
+    }).then(res => {
+      setTodos(res.data);
+    })
+  }
+
+  const deletes = (todo) => {
+    //console.log(id);
+    axios.post('http://localhost:8088/todo/delete',{
+      id : todo.id,
+      date : nowTime,
+      work : todo.work,
+      finish : todo.finish
+    }).then(res => {
+      setTodos(res.data);
+    })
+  }
+
+
+ 
+
+ 
 
 
   
@@ -44,6 +70,9 @@ function TodoList() {
           id={todo.id}
           text={todo.work}
           done={todo.finish}
+          list={todo}
+          click={() => clicks(todo)}
+          deletes={() => deletes(todo)}
         />
       ))}
     </TodoListBlock>

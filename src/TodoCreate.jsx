@@ -87,9 +87,9 @@ function TodoCreate() {
     e.preventDefault(); // 새로고침 방지
     axios.post('http://localhost:8088/todo/create',{
       work : value,
-      finish : 'true',
+      finish : 'false',
       date : moment().format('YYYY-MM-DD')
-    })
+    }).then(window.location.reload()) //새로고침하여 업데이트된 목록을 보여줌
     setValue('');
     setOpen(false);
   };

@@ -57,15 +57,17 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ done, text }) {
+function TodoItem({ done, text, id, click, deletes}) {
+
+  
 
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>
+      <CheckCircle done={done} onClick={click}>
         {done && <MdDone />}
       </CheckCircle>
       <Text done={done}>{text}</Text>
-      <Remove>
+      <Remove onClick={deletes}>
         <MdDelete />
       </Remove>
     </TodoItemBlock>
