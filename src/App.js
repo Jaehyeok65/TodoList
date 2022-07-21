@@ -16,7 +16,6 @@ function App() {
     <>
       <GlobalStyle />
       <TodoTemplate>
-        <TodoHead />
         <TodoList />
         <TodoCreate />
       </TodoTemplate>
