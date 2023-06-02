@@ -93,7 +93,7 @@ function TodoHead2() {
                 </TodoButton>
             </TodoBlock>
             <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
-            <Modal toggle={modalState}><TodoComplete Day={day} /></Modal>
+            <Modal toggle={modalState} onToggle={onChangeModalState}><TodoComplete Day={day} /></Modal>
         </TodoHeadBlock>
     );
 }
